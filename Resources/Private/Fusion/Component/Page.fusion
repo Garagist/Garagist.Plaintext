@@ -1,0 +1,38 @@
+prototype(Garagist.Plaintext:Page) < prototype(Garagist.Plaintext:Presentation.Plaintext) {
+    @propTypes.content = ${PropTypes.string.isRequired}
+
+    content = null
+
+    debugUrl = Neos.Neos:NodeUri {
+        node = ${documentNode}
+        absolute = true
+        additionalParams = ${{plaintext: true}}
+    }
+
+    prototype(Neos.Neos:NodeUri) {
+        absolute = true
+    }
+
+    prototype(Neos.Neos:ConvertUris) {
+        absolute = true
+        forceConversion = true
+        externalLinkTarget = ''
+        resourceLinkTarget = ''
+    }
+
+    @process.convert = Neos.Neos:ConvertUris {
+        absolute = true
+        forceConversion = true
+        externalLinkTarget = ''
+        resourceLinkTarget = ''
+    }
+
+    @cache {
+        mode = 'uncached'
+        context {
+            1 = 'site'
+            2 = 'node'
+            3 = 'documentNode'
+        }
+    }
+}

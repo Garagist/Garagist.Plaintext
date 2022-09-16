@@ -1,0 +1,10 @@
+include: **/*.fusion
+
+root {
+    plaintext {
+        @position = 'start 1'
+        condition = ${request.arguments.plaintext}
+        type = ${q(node).property('_nodeType.name') + '.Plaintext'}
+    }
+    @cache.entryIdentifier.plaintext = ${request.arguments.plaintext ? 'plaintext' : 'default'}
+}

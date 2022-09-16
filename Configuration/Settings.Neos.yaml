@@ -1,0 +1,25 @@
+Neos:
+  Neos:
+    fusion:
+      autoInclude:
+        'Garagist.Plaintext': true
+  Fusion:
+    defaultContext:
+      'Garagist.Plaintext': 'Garagist\Plaintext\Eel\PlaintextHelper'
+  Flow:
+    mvc:
+      routes:
+        'Garagist.Plaintext':
+          position: 'start'
+    log:
+      psr3:
+        'Neos\Flow\Log\PsrLoggerFactory':
+          'Garagist.Plaintext:PlaintextLogger':
+            default:
+              class: Neos\Flow\Log\Backend\FileBackend
+              options:
+                logFileURL: '%FLOW_PATH_DATA%Logs/Plaintext.log'
+                createParentDirectories: true
+                severityThreshold: '%LOG_DEBUG%'
+                maximumLogFileSize: 10485760
+                logFilesToKeep: 1
