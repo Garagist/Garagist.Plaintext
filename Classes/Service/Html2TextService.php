@@ -139,33 +139,39 @@ class Html2TextService
      * @see $replaceList
      */
     protected $searchList = [
-        "/\r/",                                                            // Non-legal carriage return
-        "/[\n\t]+/",                                                       // Newlines and tabs
-        '/<head\b[^>]*>.*?<\/head>/i',                                     // <head>
-        '/<script\b[^>]*>.*?<\/script>/i',                                 // <script>s -- which strip_tags supposedly has problems with
-        '/<style\b[^>]*>.*?<\/style>/i',                                   // <style>s -- which strip_tags supposedly has problems with
-        '/<span[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/span>/i',   // <span> with class plaintext:hidden
-        '/<div[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/div>/i',     // <div> with class plaintext:hidden
-        '/<table[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/table>/i', // <table> with class plaintext:hidden
-        '/<tr[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/tr>/i',       // <tr> with class plaintext:hidden
-        '/<td[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.*?<\/td>/i',       // <td> with class plaintext:hidden
-        '/<i\b[^>]*>(.*?)<\/i>/i',                                         // <i>
-        '/<em\b[^>]*>(.*?)<\/em>/i',                                       // <em>
-        '/<ins\b[^>]*>(.*?)<\/ins>/i',                                     // <ins>
-        '/(<ul\b[^>]*>|<\/ul>)/i',                                         // <ul> and </ul>
-        '/(<ol\b[^>]*>|<\/ol>)/i',                                         // <ol> and </ol>
-        '/(<dl\b[^>]*>|<\/dl>)/i',                                         // <dl> and </dl>
-        '/<li\b[^>]*>(.*?)<\/li>/i',                                       // <li> and </li>
-        '/<dd\b[^>]*>(.*?)<\/dd>/i',                                       // <dd> and </dd>
-        '/<dt\b[^>]*>(.*?)<\/dt>/i',                                       // <dt> and </dt>
-        '/<li\b[^>]*>/i',                                                  // <li>
-        '/<hr\b[^>]*>/i',                                                  // <hr>
-        '/<div\b[^>]*>/i',                                                 // <div>
-        '/(<table\b[^>]*>|<\/table>)/i',                                   // <table> and </table>
-        '/(<tr\b[^>]*>|<\/tr>)/i',                                         // <tr> and </tr>
-        '/<td\b[^>]*>(.*?)<\/td>/i',                                       // <td> and </td>
-        '/<(img)\b[^>]*alt=\"([^>"]+)\"[^>]*>/i',                          // <img> with alt tag
-        '/<outlook\b[^>]*>.*?<\/outlook>/i',                               // <outlook>
+        "/\r/",                                                                  // Non-legal carriage return
+        "/[\n\t]+/",                                                             // Newlines and tabs
+        '/<head\b[^>]*>.*?<\/head>/i',                                           // <head>
+        '/<script\b[^>]*>.*?<\/script>/i',                                       // <script>s -- which strip_tags supposedly has problems with
+        '/<style\b[^>]*>.*?<\/style>/i',                                         // <style>s -- which strip_tags supposedly has problems with
+        '/<mj-[^>]*?css-class="[^"]*?plaintext:hidden[^>]*?>.+?<\/mj-[^>]*>/i', // MJML tags with class plaintext:hidden
+        '/<p[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/p>/i',               // <p> with class plaintext:hidden
+        '/<span[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/span>/i',         // <span> with class plaintext:hidden
+        '/<div[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/div>/i',           // <div> with class plaintext:hidden
+        '/<table[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/table>/i',       // <table> with class plaintext:hidden
+        '/<tr[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.+?<\/tr>/i',             // <tr> with class plaintext:hidden
+        '/<td[^>]*?class="[^"]*?plaintext:hidden[^>]*?>.*?<\/td>/i',             // <td> with class plaintext:hidden
+        '/<i\b[^>]*>(.*?)<\/i>/i',                                               // <i>
+        '/<em\b[^>]*>(.*?)<\/em>/i',                                             // <em>
+        '/<ins\b[^>]*>(.*?)<\/ins>/i',                                           // <ins>
+        '/(<ul\b[^>]*>|<\/ul>)/i',                                               // <ul> and </ul>
+        '/(<ol\b[^>]*>|<\/ol>)/i',                                               // <ol> and </ol>
+        '/(<dl\b[^>]*>|<\/dl>)/i',                                               // <dl> and </dl>
+        '/<li\b[^>]*>(.*?)<\/li>/i',                                             // <li> and </li>
+        '/<dd\b[^>]*>(.*?)<\/dd>/i',                                             // <dd> and </dd>
+        '/<dt\b[^>]*>(.*?)<\/dt>/i',                                             // <dt> and </dt>
+        '/<li\b[^>]*>/i',                                                        // <li>
+        '/<hr\b[^>]*>/i',                                                        // <hr>
+        '/<div\b[^>]*>/i',                                                       // <div>
+        '/(<table\b[^>]*>|<\/table>)/i',                                         // <table> and </table>
+        '/(<tr\b[^>]*>|<\/tr>)/i',                                               // <tr> and </tr>
+        '/<td\b[^>]*>(.*?)<\/td>/i',                                             // <td> and </td>
+        '/<(img)\b[^>]*alt=\"([^>"]+)\"[^>]*>/i',                                // <img> with alt tag
+        '/<outlook\b[^>]*>.*?<\/outlook>/i',                                     // <outlook>
+        '/(<mj-table\b[^>]*>|<\/mj-table>)/i',                                   // <mj-table> and </mj-table>
+        '/<mj-divider\b[^>]*>/i',                                                // <mj-divider>
+        '/<mj-spacer\b[^>]*>/i',                                                 // <mj-spacer>
+        '/<mj-social\b[^>]*>.*?<\/mj-social>/i',                                 // <mj-social>
     ];
 
     /**
@@ -188,6 +194,8 @@ class Html2TextService
             '',                                        // <head>
             '',                                        // <script>s -- which strip_tags supposedly has problems with
             '',                                        // <style>s -- which strip_tags supposedly has problems with
+            "",                                        // MJML with class plaintext:hidden
+            "",                                        // <p> with class plaintext:hidden
             "",                                        // <span> with class plaintext:hidden
             "",                                        // <div > with class plaintext:hidden
             "",                                        // <table> with class plaintext:hidden
@@ -210,6 +218,10 @@ class Html2TextService
             "\t\t\\1\n",                               // <td> and </td>
             $imageReplace,                             // <img> with alt tag
             "",                                        // <outlook> tag
+            "\n\n",                                    // <mj-table> and </mj-table>
+            "\n\n" . str_repeat("-", $width) . "\n\n", // <mj-divider>
+            "&nbsp;\n\n&nbsp;",                        // <mj-spacer>
+            "",                                        // <mj-social>
         ];
     }
 
@@ -250,14 +262,20 @@ class Html2TextService
      * @var array $callbackSearch
      */
     protected $callbackSearch = [
-        '/<(h)[123456]( [^>]*)?>(.*?)<\/h[123456]>/i',           // h1 - h6
-        '/[ ]*<(p)( [^>]*)?>(.*?)<\/p>[ ]*/si',                  // <p> with surrounding whitespace.
-        '/<(br)[^>]*>[ ]*/i',                                    // <br> with leading whitespace after the newline.
-        '/<(b)( [^>]*)?>(.*?)<\/b>/i',                           // <b>
-        '/<(strong)( [^>]*)?>(.*?)<\/strong>/i',                 // <strong>
-        '/<(del)( [^>]*)?>(.*?)<\/del>/i',                       // <del>
-        '/<(th)( [^>]*)?>(.*?)<\/th>/i',                         // <th> and </th>
-        '/<(a) [^>]*href=("|\')([^"\']+)\2([^>]*)>(.*?)<\/a>/i'  // <a href="">
+        '/<(h)[123456]( [^>]*)?>(.*?)<\/h[123456]>/i',                                  // h1 - h6
+        '/<(mj)-[^>]*?css-class="[^"]*?plaintext:uppercase[^>]*?>(.*?)<\/mj-[^>]*>/i', // MJML tags with class plaintext:uppercase
+        '/[ ]*<(p)( [^>]*)?>(.*?)<\/p>[ ]*/si',                                         // <p> with surrounding whitespace.
+        '/<(br)[^>]*>[ ]*/i',                                                           // <br> with leading whitespace after the newline.
+        '/<(b)( [^>]*)?>(.*?)<\/b>/i',                                                  // <b>
+        '/<(strong)( [^>]*)?>(.*?)<\/strong>/i',                                        // <strong>
+        '/<(del)( [^>]*)?>(.*?)<\/del>/i',                                              // <del>
+        '/<(th)( [^>]*)?>(.*?)<\/th>/i',                                                // <th> and </th>
+        '/<(a) [^>]*href=("|\')([^"\']+)\2([^>]*)>(.*?)<\/a>/i',                        // <a href="">
+        '/<(mj-button) [^>]*href=("|\')([^"\']+)\2([^>]*)>(.*?)<\/mj-button>/i',       // <mj-button href="">
+        '/<(mj-navbar) [^>]*base-url=["|\']([^"\']+)"[^>]*>(.*?)<\/mj-navbar>/i',      // <mj-navbar base-url>
+        '/<(mj-navbar)( )[^>]*>(.*?)<\/mj-navbar>/i',                                  // <mj-navbar>
+        '/<(mj-image) ([^>]*)?>/i',                                                    // <mj-image>
+        '/<(mj-carousel-image) ([^>]*)?>/i',                                           // <mj-carousel-image>
     ];
 
     /**
@@ -365,16 +383,19 @@ class Html2TextService
      * @param  null   $linkOverride
      * @return string
      */
-    protected function buildLinkList($link, $display, $linkOverride = null)
+    protected function buildLinkList($link, $display, $linkOverride = null, $newLine = false)
     {
         $linkMethod = ($linkOverride) ? $linkOverride : $this->options['links'];
         if ($linkMethod == false) {
             return $display;
         }
 
+        // Add optional new line
+        $newLine = $newLine ? "\n" : '';
+
         // Ignored link types
         if (preg_match('!^(javascript:|mailto:|tel:|#)!i', html_entity_decode($link))) {
-            return $display;
+            return $display . $newLine;
         }
 
         if ($linkMethod == 'table') {
@@ -383,19 +404,19 @@ class Html2TextService
                 $this->linkList[] = $link;
             }
 
-            return $display . ' [' . ($index + 1) . ']';
+            return $display . ' [' . ($index + 1) . ']' . $newLine;
         } elseif ($linkMethod == 'nextline') {
             if ($link === $display) {
-                return $display;
+                return $display . $newLine;
             }
-            return $display . "\n[" . $link . ']';
+            return $display . "\n[" . $link . ']' . $newLine;
         } elseif ($linkMethod == 'bbcode') {
-            return sprintf('[url=%s]%s[/url]', $link, $display);
+            return sprintf('[url=%s]%s[/url]%s', $link, $display, $newLine);
         } else { // link_method defaults to inline
             if ($link === $display) {
-                return $display;
+                return $display . $newLine;
             }
-            return $display . ' [' . $link . ']';
+            return $display . ' [' . $link . ']' . $newLine;
         }
     }
 
@@ -504,7 +525,8 @@ class Html2TextService
      */
     protected function pregCallback($matches)
     {
-        switch (mb_strtolower($matches[1])) {
+        $case = mb_strtolower($matches[1]);
+        switch ($case) {
             case 'p':
                 // Replace newlines with spaces.
                 $para = str_replace("\n", " ", $matches[3]);
@@ -525,19 +547,71 @@ class Html2TextService
                 return $this->toupper("\t\t" . $matches[3] . "\n");
             case 'h':
                 return $this->toupper("\n\n" . $matches[3] . "\n\n");
-            case 'a':
-                // override the link method
-                $linkOverride = null;
-                if (preg_match('/_html2text_link_(\w+)/', $matches[4], $linkOverrideMatch)) {
-                    $linkOverride = $linkOverrideMatch[1];
+            case 'mj':
+                return $this->toupper("\n\n" . $matches[2] . "\n\n");
+            case 'mj-image':
+            case 'mj-carousel-image':
+                $showAltText = $this->options['imageAltText'];
+                $showLinks = !!$this->options['links'];
+                $alt = preg_match('/alt="([^"]*)"/', $matches[2], $altMatches) ? $altMatches[1] : '';
+                $href = preg_match('/href="([^"]*)"/', $matches[2], $hrefMatches) ? $hrefMatches[1] : '';
+                $display = $alt ? '[' . $alt . ']' : $href;
+                if ($href) {
+                    if ($showAltText || $showLinks) {
+                        return $this->handleLink($href, $display, true);
+                    }
                 }
-                // Remove spaces in URL (#1487805)
-                $url = str_replace(' ', '', $matches[3]);
+                if (!$alt || !$showAltText) {
+                    return '';
+                }
+                return  $display;
+            case 'mj-navbar':
+                $baseUrl = trim($matches[2]);
+                $links = explode('</mj-navbar-link>', $matches[3]);
+                $hasLinks = false;
+                $result = "\n\n";
+                foreach ($links as $value) {
+                    preg_match('/<mj-navbar-link[^>]*href=("|\')([^"\']+)\1([^>]*)>(.*)/i', $value, $link);
+                    if ($link) {
+                        $hasLinks = true;
+                        $url = $baseUrl . $link[2];
+                        $display = $link[4];
+                        $result .= $this->handleLink($url, $display, true);
+                    }
+                }
+                if (!$hasLinks) {
+                    return '';
+                }
+                return $result . "\n\n";
 
-                return $this->buildLinkList($url, $matches[5], $linkOverride);
+            case 'a':
+            case 'mj-button':
+                $newLine = $case != 'a';
+                return $this->handleLink($matches[3], $matches[5], $newLine, $matches[4]);
         }
 
         return '';
+    }
+
+    /**
+     * Handle links.
+     *
+     * @param string $url
+     * @param string $display
+     * @param string $propertyAfterHref
+     * @param boolean $newline
+     * @return string
+     */
+    protected function handleLink($url, $display, $newline = false, $propertyAfterHref = '')
+    {
+        // override the link method
+        $linkOverride = null;
+        if ($propertyAfterHref && preg_match('/_html2text_link_(\w+)/', $propertyAfterHref, $linkOverrideMatch)) {
+            $linkOverride = $linkOverrideMatch[1];
+        }
+        // Remove spaces in URL (#1487805)
+        $url = str_replace(' ', '', $url);
+        return $this->buildLinkList($url, $display, $linkOverride, $newline);
     }
 
     /**

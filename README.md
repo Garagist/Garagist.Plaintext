@@ -2,7 +2,11 @@
 
 [![Latest stable version]][packagist] [![GitHub stars]][stargazers] [![GitHub watchers]][subscription] [![GitHub license]][license] [![GitHub issues]][issues] [![GitHub forks]][network]
 
-With Garagist.Plaintext you can convert any html document to plaintext. Useful for newsletter generation.
+With Garagist.Plaintext you can convert any `HTML` or `MJML` document to plaintext. Useful for newsletter generation.
+
+## Special CSS classes
+
+To hide an element, add the class `plaintext:hidden` to remove it from the plaintext output. To mark an `MJML` element as headline (aka convert to uppercase), add the `css-class` `plaintext:uppercase`.
 
 [packagist]: https://packagist.org/packages/garagist/plaintext
 [latest stable version]: https://poser.pugx.org/garagist/plaintext/v/stable
