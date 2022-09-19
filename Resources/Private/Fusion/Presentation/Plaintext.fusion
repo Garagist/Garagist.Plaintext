@@ -10,6 +10,6 @@ prototype(Garagist.Plaintext:Presentation.Plaintext) < prototype(Neos.Fusion:Com
     renderer = Neos.Fusion:Http.Message {
         httpResponseHead.headers.'Content-Type' = 'text/plain'
         content = ${props.content}
-        @process.plaintext = ${Garagist.Plaintext.convert(value, props.options, props.debugUrl)}
+        content.@process.plaintext = ${Garagist.Plaintext.convert(value, props.options, props.debugUrl)}
     }
 }
