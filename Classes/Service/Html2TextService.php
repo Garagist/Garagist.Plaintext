@@ -172,6 +172,11 @@ class Html2TextService
         '/<mj-divider\b[^>]*>/i',                                                // <mj-divider>
         '/<mj-spacer\b[^>]*>/i',                                                 // <mj-spacer>
         '/<mj-social\b[^>]*>.*?<\/mj-social>/i',                                 // <mj-social>
+        '/(<mj-section\b[^>]*>|<\/mj-section>)/i',                               // <mj-section> and </mj-section>
+        '/(<mj-column\b[^>]*>|<\/mj-column>)/i',                                 // <mj-column> and </mj-column>
+        '/(<mj-accordion\b[^>]*>|<\/mj-accordion>)/i',                           // <mj-accordion> and </mj-accordion>
+        '/(<mj-hero\b[^>]*>|<\/mj-hero>)/i',                                     // <mj-hero> and </mj-hero>
+        '/(<mj-text\b[^>]*>|<\/mj-text>)/i',                                     // <mj-hero> and </mj-hero>
     ];
 
     /**
@@ -222,6 +227,11 @@ class Html2TextService
             "\n\n" . str_repeat("-", $width) . "\n\n", // <mj-divider>
             "&nbsp;\n\n&nbsp;",                        // <mj-spacer>
             "",                                        // <mj-social>
+            "\n\n",                                    // <mj-section> and </mj-section>
+            "\n\n",                                    // <mj-column> and </mj-column>
+            "\n\n",                                    // <mj-accordion> and </mj-accordion>
+            "\n\n",                                    // <mj-hero> and </mj-hero>
+            "\n\n",                                    // <mj-text> and </mj-text>
         ];
     }
 
