@@ -4,7 +4,7 @@ root {
     plaintext {
         @position = 'start 1'
         condition = ${request.arguments.plaintext}
-        type = ${q(node).property('_nodeType.name') + '.Plaintext'}
+        type = ${node.nodeType.name + '.Plaintext'}
     }
     @cache.entryIdentifier.plaintext = ${request.arguments.plaintext ? 'plaintext' : 'default'}
 }
