@@ -4,6 +4,16 @@
 
 With Garagist.Plaintext you can convert any `HTML` or `MJML` document to plaintext. Useful for newsletter generation.
 
+## Installation
+
+Add the package in your site package:
+
+```bash
+composer require --no-update garagist/plaintext
+```
+
+The run `composer update` in your project root.
+
 ## Special CSS classes
 
 To hide an element, add the class `plaintext:hidden` to remove it from the plaintext output. To mark an `MJML` element as headline (aka convert to uppercase), add the `css-class` `plaintext:uppercase`.
