@@ -3,6 +3,19 @@ Neos:
     fusion:
       autoInclude:
         'Garagist.Plaintext': true
+    userInterface:
+      translation:
+        autoInclude:
+          Garagist.Plaintext:
+            - 'Main'
+      editPreviewModes:
+        plaintext:
+          isEditingMode: false
+          isPreviewMode: true
+          fusionRenderingPath: 'plaintext'
+          title: 'Garagist.Plaintext:Main:editPreviewMode'
+          width: 1024
+          backgroundColor: '#eee'
   Fusion:
     defaultContext:
       'Garagist.Plaintext': 'Garagist\Plaintext\Eel\PlaintextHelper'

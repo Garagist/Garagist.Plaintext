@@ -8,3 +8,18 @@ root {
     }
     @cache.entryIdentifier.plaintext = ${request.arguments.plaintext ? 'plaintext' : 'default'}
 }
+
+plaintext = Neos.Fusion:Case {
+    canRender {
+        condition = Neos.Fusion:CanRender {
+            type = ${node.nodeType.name + '.Plaintext'}
+        }
+        type = ${node.nodeType.name + '.Plaintext'}
+    }
+    notSet {
+        condition = true
+        renderer = Carbon.Notification:Document {
+            content = ${Translation.translate('editPreviewMode.noSet', 'Plaintext output is not configured for this page type', [], 'Main', 'Garagist.Plaintext')}
+        }
+    }
+}
