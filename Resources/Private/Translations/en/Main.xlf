@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2"
+    xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file original="" product-name="Garagist.Plaintext" source-language="en" datatype="plaintext">
+        <body>
+            <trans-unit id="editPreviewMode" xml:space="preserve">
+                <source>Plaintext</source>
+            </trans-unit>
+            <trans-unit id="editPreviewMode.noSet" xml:space="preserve">
+                <source>Plaintext output is not configured for this page type</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
