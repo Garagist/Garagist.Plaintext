@@ -1,6 +1,12 @@
 prototype(Garagist.Plaintext:Page) < prototype(Garagist.Plaintext:Presentation.Plaintext) {
     @propTypes.content = ${PropTypes.string.isRequired}
 
+    @context {
+        documentNode = ${q(documentNode).context({'workspaceName': 'live'}).get(0)}
+        node = ${q(node).context({'workspaceName': 'live'}).get(0)}
+        site = ${q(site).context({'workspaceName': 'live'}).get(0)}
+    }
+
     content = null
 
     debugUrl = Neos.Neos:NodeUri {
